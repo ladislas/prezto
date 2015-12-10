@@ -36,7 +36,7 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'archive' \
   'fasd' \
-  'git' \
+  'oh-my-git' \
   'homebrew' \
   'osx' \
   'prompt'
