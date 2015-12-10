@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#	Ladislas de Toldi <ladislas[at]leka.io> - From the Oh-My-Zsh Repository
 #
 
 #
@@ -23,38 +24,58 @@ zstyle -s ':prezto:module:git:status:ignore' submodules '_git_status_ignore_subm
   || _git_status_ignore_submodules='none'
 
 #
+# Funcions
+#
+
+# Pretty log messages
+function _git_log_prettily(){
+  if ! [ -z $1 ]; then
+    git log --pretty=$1
+  fi
+}
+# Warn if the current branch is a WIP
+function work_in_progress() {
+  if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
+    echo "WIP!!"
+  fi
+}
+
+#
 # Aliases
 #
 
 # Git
 alias g='git'
 
+# Add (a)
+alias ga='git add'
+alias gaa='git add --all'
+alias gapa='git add --patch'
+
 # Branch (b)
 alias gb='git branch'
-alias gbc='git checkout -b'
-alias gbl='git branch -v'
-alias gbL='git branch -av'
-alias gbx='git branch -d'
-alias gbX='git branch -D'
-alias gbm='git branch -m'
-alias gbM='git branch -M'
-alias gbs='git show-branch'
-alias gbS='git show-branch -a'
+alias gba='git branch -a'
+alias gbav='git branch -av'
+alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$)" | command xargs -n 1 git branch -d'
+alias gbl='git blame -b -w'
+alias gbnm='git branch --no-merged'
+alias gbr='git branch --remote'
+
+# Checkout (c)
+alias gco='git checkout'
+alias gcm='git checkout master'
+alias gcb='git checkout -b'
 
 # Commit (c)
-alias gc='git commit --verbose'
-alias gca='git commit --verbose --all'
-alias gcm='git commit --message'
-alias gco='git checkout'
-alias gcO='git checkout --patch'
-alias gcf='git commit --amend --reuse-message HEAD'
-alias gcF='git commit --verbose --amend'
-alias gcp='git cherry-pick --ff'
-alias gcP='git cherry-pick --no-commit'
-alias gcr='git revert'
-alias gcR='git reset "HEAD^"'
-alias gcs='git show'
-alias gcl='git-commit-lost'
+alias gcmsg='git commit -m'
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gca='git commit -v -a'
+alias gca!='git commit -v -a --amend'
+alias gcan!='git commit -v -a -s --no-edit --amend'
+
+# Config (c)
+alias gcf='git config --list'
 
 # Conflict (C)
 alias gCl='git status | sed -n "s/^.*both [a-z]*ed: *//p"'
@@ -65,20 +86,24 @@ alias gCO='gCo $(gCl)'
 alias gCt='git checkout --theirs --'
 alias gCT='gCt $(gCl)'
 
-# Data (d)
-alias gd='git ls-files'
-alias gdc='git ls-files --cached'
-alias gdx='git ls-files --deleted'
-alias gdm='git ls-files --modified'
-alias gdu='git ls-files --other --exclude-standard'
-alias gdk='git ls-files --killed'
-alias gdi='git status --porcelain --short --ignored | sed -n "s/^!! //p"'
+# Diff (d)
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+gdv() { git diff -w "$@" | view - }
+compdef _git gdv=git-diff
+alias gdw='git diff --word-diff'
 
 # Fetch (f)
 alias gf='git fetch'
-alias gfc='git clone'
-alias gfm='git pull'
-alias gfr='git pull --rebase'
+alias gfa='git fetch --all --prune'
+function gfg() { git ls-files | grep $@ }
+compdef gfg=grep
+alias gfo='git fetch origin'
+alias gcl='git clone --recursive'
+alias gl='git pull'
+alias glr='git pull --rebase'
+alias glpv='git pull --rebase -v'
 
 # Grep (g)
 alias gg='git grep'
@@ -100,75 +125,79 @@ alias gix='git rm -r --cached'
 alias giX='git rm -rf --cached'
 
 # Log (l)
-alias gl='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
-alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
-alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:"${_git_log_medium_format}"'
-alias glo='git log --topo-order --pretty=format:"${_git_log_oneline_format}"'
-alias glg='git log --topo-order --all --graph --pretty=format:"${_git_log_oneline_format}"'
-alias glb='git log --topo-order --pretty=format:"${_git_log_brief_format}"'
-alias glc='git shortlog --summary --numbered'
+alias glg='git log --stat --color'
+alias glgp='git log --stat --color -p'
+alias glgg='git log --graph --color'
+alias glgga='git log --graph --decorate --all'
+alias glgm='git log --graph --max-count=10'
+alias glo='git log --oneline --decorate --color'
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
+alias glog='git log --oneline --decorate --color --graph'
+alias glp="_git_log_prettily"
+compdef _git glp=git-log
 
 # Merge (m)
 alias gm='git merge'
-alias gmC='git merge --no-commit'
-alias gmF='git merge --no-ff'
-alias gma='git merge --abort'
-alias gmt='git mergetool'
+alias gmom='git merge origin/master'
+alias gmt='git mergetool --no-prompt'
+alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
+alias gmum='git merge upstream/master'
 
 # Push (p)
 alias gp='git push'
-alias gpf='git push --force'
-alias gpa='git push --all'
-alias gpA='git push --all && git push --tags'
-alias gpt='git push --tags'
-alias gpc='git push --set-upstream origin "$(git-branch-current 2> /dev/null)"'
-alias gpp='git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)"'
+alias gpd='git push --dry-run'
+alias gpoat='git push origin --all && git push origin --tags'
+compdef _git gpoat=git-push
+alias gpu='git push upstream'
+alias gpv='git push -v'
 
 # Rebase (r)
-alias gr='git rebase'
-alias gra='git rebase --abort'
-alias grc='git rebase --continue'
-alias gri='git rebase --interactive'
-alias grs='git rebase --skip'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbs='git rebase --skip'
+
+# Reset (r)
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
+alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
+alias gru='git reset --'
 
 # Remote (R)
-alias gR='git remote'
-alias gRl='git remote --verbose'
-alias gRa='git remote add'
-alias gRx='git remote rm'
-alias gRm='git remote rename'
-alias gRu='git remote update'
-alias gRp='git remote prune'
-alias gRs='git remote show'
-alias gRb='git-hub-browse'
+alias gr='git remote'
+alias gra='git remote add'
+alias grmv='git remote rename'
+alias grrm='git remote remove'
+alias grset='git remote set-url'
+alias grup='git remote update'
+alias grv='git remote -v'
+
+# Status (s)
+alias gsb='git status -sb'
+alias gss='git status -s'
+alias gst='git status'
 
 # Stash (s)
-alias gs='git stash'
-alias gsa='git stash apply'
-alias gsx='git stash drop'
-alias gsX='git-stash-clear-interactive'
-alias gsl='git stash list'
-alias gsL='git-stash-dropped'
-alias gsd='git stash show --patch --stat'
-alias gsp='git stash pop'
-alias gsr='git-stash-recover'
-alias gss='git stash save --include-untracked'
-alias gsS='git stash save --patch --no-keep-index'
-alias gsw='git stash save --include-untracked --keep-index'
+alias gsta='git stash'
+alias gstaa='git stash apply'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
 
 # Submodule (S)
-alias gS='git submodule'
-alias gSa='git submodule add'
-alias gSf='git submodule foreach'
-alias gSi='git submodule init'
-alias gSI='git submodule update --init --recursive'
-alias gSl='git submodule status'
-alias gSm='git-submodule-move'
-alias gSs='git submodule sync'
-alias gSu='git submodule foreach git pull origin master'
-alias gSx='git-submodule-remove'
+alias gsi='git submodule init'
+alias gsu='git submodule update'
+alias gsuir='git submodule update --init --recursive'
+alias gsufgpom='git submodule foreach git pull origin master'
 
-# Working Copy (w)
+# Working Copy
+
+alias gclean='git reset --hard && git clean -dfx'
+
 alias gws='git status --ignore-submodules=${_git_status_ignore_submodules} --short'
 alias gwS='git status --ignore-submodules=${_git_status_ignore_submodules}'
 alias gwd='git diff --no-ext-diff'
