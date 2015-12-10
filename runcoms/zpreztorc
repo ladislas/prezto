@@ -27,6 +27,8 @@ zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
   'editor' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'history' \
   'directory' \
   'spectrum' \
@@ -37,7 +39,6 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'homebrew' \
   'osx' \
-  'syntax-highlighting' \
   'prompt'
 
 #
@@ -48,7 +49,7 @@ zstyle ':prezto:load' pmodule \
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -123,12 +124,12 @@ zstyle ':prezto:module:prompt' theme 'mathias'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
- zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-   'pattern' \
-   'cursor' \
-   'root'
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'cursor' \
+  'root'
 
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
@@ -160,4 +161,4 @@ zstyle ':prezto:module:prompt' theme 'mathias'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
- zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
