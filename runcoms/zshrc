@@ -14,19 +14,38 @@ fi
 
 # Set nvim as default editor and visual
 if nvim --version &> /dev/null ; then
+
   export EDITOR="nvim" ;
   export VISUAL='nvim'
+
 else
+
   export EDITOR="vim"
   export VISUAL='vim'
+
 fi
 
-# Load OS X specific modules
+# Useful aliases
+alias now="ssh ladislas@leka.cloudapp.net"
+alias qq="exit"
+
+# Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
+
   zstyle ':prezto:load' pmodule \
     'homebrew' \
     'osx'
+
+  #Use GNU Coreutils instead of Apple's
+  if [[ -s "$(brew --prefix coreutils)/libexec/gnubin/whoami" ]] ; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    alias ll="ls -lh --group-directories-first"
+  fi
+
+  # Cask Stuff
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 fi
 
 
-
+eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
