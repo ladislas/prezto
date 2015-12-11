@@ -16,3 +16,6 @@
 [submodule "modules/prompt/functions/pure"]
 	path = modules/prompt/external/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "modules/lscolors"]
+	path = modules/lscolors
+	url = https://github.com/ladislas/LS_COLORS
