@@ -76,17 +76,17 @@ function prompt_josh_setup {
   zstyle ':prezto:module:git:info' verbose 'yes'
   zstyle ':prezto:module:git:info:branch' format '${turquoise}%b%f${git_info[rprompt]}'
   zstyle ':prezto:module:git:info:action' format '${yellow}%f'
-  zstyle ':prezto:module:git:info:added' format "${green}✚%f"
-  zstyle ':prezto:module:git:info:ahead' format "${yellow}⬆%f"
-  zstyle ':prezto:module:git:info:behind' format "${yellow}⬇%f"
-  zstyle ':prezto:module:git:info:commit' format "${green}%.7c%f"
-  zstyle ':prezto:module:git:info:deleted' format "${red}✖%f"
-  zstyle ':prezto:module:git:info:modified' format "${blue}✱%f"
-  zstyle ':prezto:module:git:info:position' format "${red}%p%f"
-  zstyle ':prezto:module:git:info:renamed' format "${magenta}➜%f"
-  zstyle ':prezto:module:git:info:stashed' format "${cyan}✭%f"
-  zstyle ':prezto:module:git:info:unmerged' format "${yellow}═%f"
-  zstyle ':prezto:module:git:info:untracked' format "${white}◼%f"
+  zstyle ':prezto:module:git:info:added' format "${green}●%f"
+  # zstyle ':prezto:module:git:info:ahead' format "${yellow}⬆%f"
+  # zstyle ':prezto:module:git:info:behind' format "${yellow}⬇%f"
+  zstyle ':prezto:module:git:info:commit' format "${green}c%f"
+  zstyle ':prezto:module:git:info:deleted' format "${red}●%f"
+  zstyle ':prezto:module:git:info:modified' format "${yellow}●%f"
+  # zstyle ':prezto:module:git:info:position' format "${red}%p%f"
+  zstyle ':prezto:module:git:info:renamed' format "${orange}●%f"
+  zstyle ':prezto:module:git:info:stashed' format "${violet}●%f"
+  # zstyle ':prezto:module:git:info:unmerged' format "${cyan}═%f"
+  zstyle ':prezto:module:git:info:untracked' format "${white}●%f"
   zstyle ':prezto:module:git:info:keys' format \
     'prompt' '($(coalesce "%b" "%p" "%c")%s)' \
     'rprompt' '%A%B%S%a%d%m%r%U%u'
