@@ -11,3 +11,22 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# Set nvim as default editor and visual
+if nvim --version &> /dev/null ; then
+  export EDITOR="nvim" ;
+  export VISUAL='nvim'
+else
+  export EDITOR="vim"
+  export VISUAL='vim'
+fi
+
+# Load OS X specific modules
+if [[ "$OSTYPE" == darwin* ]]; then
+  zstyle ':prezto:load' pmodule \
+    'homebrew' \
+    'osx'
+fi
+
+
+
