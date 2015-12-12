@@ -37,6 +37,8 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'fasd' \
   'oh-my-git' \
+  'homebrew' \
+  'osx' \
   'prompt'
 
 #
