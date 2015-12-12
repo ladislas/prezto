@@ -25,25 +25,24 @@ else
 
 fi
 
+# Show dotfiles first with la
+export LC_ALL="C"
+
 # Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
 
   #Use GNU Coreutils instead of Apple's
-  if [[ -s "$(brew --prefix coreutils)/libexec/gnubin/whoami" ]] ; then
-    # export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    # eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
-    # alias ls="ls --group-directories-first"
+  if is-callable 'gwhoami' ; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
   fi
 
   # Cask Stuff
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 else
-    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
-    alias ls="ls --group-directories-first"
+    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
 fi
-
-# Load LS_COLORS from modules
 
 # Useful aliases
 alias now="ssh ladislas@leka.cloudapp.net"
