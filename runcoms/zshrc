@@ -25,27 +25,52 @@ else
 
 fi
 
-# Useful aliases
-alias now="ssh ladislas@leka.cloudapp.net"
-alias qq="exit"
-
 # Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
 
-  zstyle ':prezto:load' pmodule \
-    'homebrew' \
-    'osx'
-
   #Use GNU Coreutils instead of Apple's
   if [[ -s "$(brew --prefix coreutils)/libexec/gnubin/whoami" ]] ; then
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    alias ll="ls -lh --group-directories-first"
+    # export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    # eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
+    # alias ls="ls --group-directories-first"
   fi
 
   # Cask Stuff
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+else
+    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
+    alias ls="ls --group-directories-first"
 fi
 
+# Load LS_COLORS from modules
 
-eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/LS_COLORS" )
+# Useful aliases
+alias now="ssh ladislas@leka.cloudapp.net"
+alias qq="exit"
+alias zshrc='$EDITOR ~/.zshrc' # Quick access to the ~/.zshrc file
+
+# ls, the common ones I use a lot shortened for rapid fire usage
+alias l='ls -lFh'     #size,show type,human readable
+alias la='ls -lAFh'   #long list,show almost all,show type,human readable
+alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
+alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
+alias ll='ls -l'      #long list
+alias ldot='ls -ld .*'
+alias lS='ls -1FSsh'
+alias lart='ls -1Fcart'
+alias lrt='ls -1Fcrt'
+
+# System info, history and help
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
+alias h='history'
+alias hgrep="fc -El 0 | grep"
+alias help='man'
+alias p='ps -f'
+alias sortnr='sort -n -r'
+alias unexport='unset'
+
