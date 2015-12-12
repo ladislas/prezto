@@ -35,6 +35,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   if is-callable 'gwhoami' ; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+    alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
   fi
 
   # Cask Stuff
