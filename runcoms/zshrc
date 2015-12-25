@@ -7,7 +7,7 @@
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
@@ -15,13 +15,13 @@ fi
 # Set nvim as default editor and visual
 if nvim --version &> /dev/null ; then
 
-  export EDITOR="nvim" ;
-  export VISUAL='nvim'
+	export EDITOR="nvim" ;
+	export VISUAL='nvim'
 
 else
 
-  export EDITOR="vim"
-  export VISUAL='vim'
+	export EDITOR="vim"
+	export VISUAL='vim'
 
 fi
 
@@ -31,18 +31,26 @@ export LC_ALL="C"
 # Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
 
-  #Use GNU Coreutils instead of Apple's
-  if is-callable 'gwhoami' ; then
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
-    alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
-  fi
+	#Use GNU Coreutils instead of Apple's
+	if is-callable 'gwhoami' ; then
+		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
+	fi
 
-  # Cask Stuff
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+	# Cask Stuff
+	export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Load Linux  specific modules and config
 else
-    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+fi
+
+# Set rbenv
+if is-callable 'rbenv' ; then
+	export RBENV_ROOT=/usr/local/var/rbenv
+	eval "$(rbenv init - zsh)";
 fi
 
 # Useful aliases
