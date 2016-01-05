@@ -88,8 +88,8 @@ function prompt_josh_setup {
 
   # Define prompts.
   PROMPT='
-${turquoise}# ${orange}%n%f @ ${yellow}%m%f in ${green}%~%f ${(e)git_info[prompt]}
-${green}→ '
+${turquoise}#%f ${orange}%n%f @ ${yellow}%m%f in ${green}%~%f ${(e)git_info[prompt]}
+${green}→%f '
 
   SPROMPT='zsh: correct ${red}%R%f to ${green}%r%f [nyae]? '
 }
