@@ -25,16 +25,16 @@ else
 
 fi
 
-# Show dotfiles first with la
-export LC_ALL=en_US.UFT-8
 
 # Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
 
-	#Use GNU Coreutils instead of Apple's
+	# Use GNU Coreutils instead of Apple's
 	if is-callable 'gwhoami' ; then
 		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		# Set LS_COLORS
 		eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+		# Alias ls to use color output
 		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
 	fi
 
@@ -44,7 +44,12 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 # Load Linux  specific modules and config
 else
+	# Set LS_COLORS
 	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+
+	# Show dotfiles first with la
+	export LC_COLLATE="C"
+
 fi
 
 # Set rbenv
