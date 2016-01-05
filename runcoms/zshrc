@@ -26,7 +26,7 @@ else
 fi
 
 # Show dotfiles first with la
-export LC_ALL="C"
+export LC_ALL=en_US.UFT-8
 
 # Load OS X specific modules and config
 if [[ "$OSTYPE" == darwin* ]]; then
