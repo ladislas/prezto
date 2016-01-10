@@ -14,15 +14,11 @@ fi
 
 # Set nvim as default editor and visual
 if nvim --version &> /dev/null ; then
-
 	export EDITOR="nvim" ;
 	export VISUAL='nvim'
-
 else
-
 	export EDITOR="vim"
 	export VISUAL='vim'
-
 fi
 
 
@@ -38,11 +34,13 @@ if [[ "$OSTYPE" == darwin* ]]; then
 		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
 	fi
 
-
 	# Cask Stuff
 	export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# Load Linux  specific modules and config
+	# NVM Stuff
+	export NVM_DIR=~/.nvm
+	[ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh
+
 else
 	# Set LS_COLORS
 	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
