@@ -7,60 +7,66 @@
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
 
 # Set nvim as default editor and visual
 if nvim --version &> /dev/null ; then
-  export EDITOR="nvim" ;
-  export VISUAL='nvim'
+	export EDITOR="nvim" ;
+	export VISUAL='nvim'
 else
-  export EDITOR="vim"
-  export VISUAL='vim'
+	export EDITOR="vim"
+	export VISUAL='vim'
 fi
 
 
 # Load OS X specific config
 if [[ "$OSTYPE" == darwin* ]]; then
 
-  # Use GNU Coreutils instead of Apple's
-  if is-callable 'gwhoami' ; then
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    # Set LS_COLORS
-    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
-    # Alias ls to use color output
-    alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
-  fi
+	# Use GNU Coreutils instead of Apple's
+	if is-callable 'gwhoami' ; then
+		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		# Set LS_COLORS
+		eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+		# Alias ls to use color output
+		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
+	fi
 
-  # Set brew cask
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+	# Set brew cask
+	export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-  # Set NVM
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh
+	# Set NVM
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh
 
 fi
 
 # Load Linux specific config
 if [[ "$OSTYPE" == linux* ]]; then
 
-  # Show dotfiles first with la
-  export LC_COLLATE="C"
+	# Show dotfiles first with la
+	export LC_COLLATE="C"
+	export LC_ALL="en_US.UTF-8"
+	export LC_TYPE="en_US.UTF-8"
+	export LANG="en_US.UTF-8"
 
-  # Set LS_COLORS
-  eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+	# Set LS_COLORS
+	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
 
-  # Set NVM
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+	# Set NVM
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+	# Set rbenv
+	export PATH="$HOME/.rbenv/bin:$PATH"
 
 fi
 
 # Set rbenv
 if is-callable 'rbenv' ; then
-  eval "$(rbenv init - zsh)";
+	eval "$(rbenv init - zsh)";
 fi
 
 # Useful aliases
