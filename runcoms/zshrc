@@ -25,6 +25,9 @@ fi
 # Load OS X specific config
 if [[ "$OSTYPE" == darwin* ]]; then
 
+	export LANG=en_US.UTF-8
+	export LC_COLLATE=C
+
 	# Use GNU Coreutils instead of Apple's
 	if is-callable 'gwhoami' ; then
 		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -48,9 +51,6 @@ if [[ "$OSTYPE" == linux* ]]; then
 
 	# Show dotfiles first with la
 	export LC_COLLATE="C"
-	export LC_ALL="en_US.UTF-8"
-	export LC_TYPE="en_US.UTF-8"
-	export LANG="en_US.UTF-8"
 
 	# Set LS_COLORS
 	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
@@ -58,9 +58,6 @@ if [[ "$OSTYPE" == linux* ]]; then
 	# Set NVM
 	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-	# Set rbenv
-	export PATH="$HOME/.rbenv/bin:$PATH"
 
 fi
 
