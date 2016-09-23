@@ -38,7 +38,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 	fi
 
 	# Set brew cask
-	export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+	# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 	# Set NVM
 	export NVM_DIR="$HOME/.nvm"
