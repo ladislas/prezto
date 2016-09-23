@@ -11,15 +11,19 @@ Installation
 Prezto will work with any recent release of Zsh, but the minimum required
 version is 4.3.17.
 
+  1. Install `brew` and the latest version of Zsh:
+
+        brew install zsh
+
   1. Launch Zsh:
 
         zsh
 
-  2. Clone the repository:
+  1. Clone the repository:
 
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+        git clone --recursive https://github.com/ladislas/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-  3. Create a new Zsh configuration by copying the Zsh configuration files
+  1. Create a new Zsh configuration by copying the Zsh configuration files
      provided:
 
         setopt EXTENDED_GLOB
@@ -27,11 +31,17 @@ version is 4.3.17.
           ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
         done
 
-  4. Set Zsh as your default shell:
+  1. Edit `/etc/shells` to be able to use the new version of Zsh
 
-        chsh -s /bin/zsh
+        sudo vim /etc/shells
+        # then add the following at the end
+        /usr/local/bin/zsh
 
-  5. Open a new Zsh terminal window or tab.
+  1. Set Zsh as your default shell:
+
+        chsh -s /usr/local/bin/zsh
+
+  1. Open a new Zsh terminal window or tab.
 
 ### Troubleshooting
 
