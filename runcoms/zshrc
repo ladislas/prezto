@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Ladislas de Toldi <ladislas@leka.io>
 #
 
 # Source Prezto.
@@ -13,7 +14,7 @@ fi
 # Customize to your needs...
 
 # Set nvim as default editor and visual
-if nvim --version &> /dev/null ; then
+if is-callable 'nvim' ; then
 	export EDITOR="nvim" ;
 	export VISUAL='nvim'
 else
@@ -30,7 +31,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 	# Use GNU Coreutils instead of Apple's
 	if is-callable 'gwhoami' ; then
-		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 		# Set LS_COLORS
 		eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
 		# Alias ls to use color output
@@ -41,8 +42,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 	# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 	# Set NVM
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh
+	#export NVM_DIR="/Users/ladislas/.nvm"
+	#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 fi
 
