@@ -39,7 +39,8 @@ zstyle ':prezto:load' pmodule \
   'oh-my-git' \
   'homebrew' \
   'osx' \
-  'prompt'
+  'prompt'\
+  'python'
 
 #
 # Editor
