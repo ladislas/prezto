@@ -1,47 +1,60 @@
-Prezto — Instantly Awesome Zsh
-==============================
+# Prezto — Instantly Awesome Zsh
 
 Prezto is the configuration framework for [Zsh][1]; it enriches the command line
 interface environment with sane defaults, aliases, functions, auto completion,
 and prompt themes.
 
-Installation
-------------
+## Installation
 
 Prezto will work with any recent release of Zsh, but the minimum required
 version is 4.3.17.
 
-  1. Install `brew` and the latest version of Zsh:
+1. Install `brew` and the latest version of Zsh:
 
-        brew install zsh
+```
+brew install zsh
+```
 
-  1. Launch Zsh:
+2. Launch Zsh:
 
-        zsh
+```
+zsh
+```
 
-  1. Clone the repository:
+3. Clone the repository:
 
-        git clone --recursive https://github.com/ladislas/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+```
+git clone --recursive https://github.com/ladislas/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+```
 
-  1. Create a new Zsh configuration by copying the Zsh configuration files
-     provided:
+4. Create a new Zsh configuration by copying the Zsh configuration files provided:
 
-        setopt EXTENDED_GLOB
-        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-          ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-        done
+```
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+	ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+```
 
-  1. Edit `/etc/shells` to be able to use the new version of Zsh
+5. Edit `/etc/shells` to be able to use the new version of Zsh
 
-        sudo vim /etc/shells
-        # then add the following at the end
-        /usr/local/bin/zsh
+```
+sudo vim /etc/shells
+# then add the following at the end
+/usr/local/bin/zsh
+```
 
-  1. Set Zsh as your default shell:
+6. Set Zsh as your default shell:
 
-        chsh -s /usr/local/bin/zsh
+```
+# on macOS
+chsh -s /usr/local/bin/zsh
 
-  1. Open a new Zsh terminal window or tab.
+# on Linux
+chsh -s /usr/bin/zsh
+```
+
+7. Open a new Zsh terminal window or tab.
 
 ### Troubleshooting
 
@@ -49,49 +62,45 @@ If you are not able to find certain commands after switching to *Prezto*,
 modify the `PATH` variable in *~/.zprofile* then open a new Zsh terminal
 window or tab.
 
-Updating
---------
+## Updating
 
 Pull the latest changes and update submodules.
 
-    git pull && git submodule update --init --recursive
+```
+git pull && git submodule update --init --recursive
+```
 
-Usage
------
+## Usage
 
 Prezto has many features disabled by default. Read the source code and
 accompanying README files to learn of what is available.
 
 ### Modules
 
-  1. Browse */modules* to see what is available.
-  2. Load the modules you need in *~/.zpreztorc* then open a new Zsh terminal
+1. Browse */modules* to see what is available.
+2. Load the modules you need in *~/.zpreztorc* then open a new Zsh terminal
      window or tab.
 
 ### Themes
 
-  1. For a list of themes, type `prompt -l`.
-  2. To preview a theme, type `prompt -p name`.
-  3. Load the theme you like in *~/.zpreztorc* then open a new Zsh terminal
-     window or tab.
+1. For a list of themes, type `prompt -l`.
+2. To preview a theme, type `prompt -p name`.
+3. Load the theme you like in *~/.zpreztorc* then open a new Zsh terminal window or tab.
 
-     ![sorin theme][2]
+![sorin theme][2]
 
-Customization
--------------
+## Customization
 
 The project is managed via [Git][3]. It is highly recommended that you fork this
 project; so, that you can commit your changes and push them to [GitHub][4] to
 not lose them. If you do not know how to use Git, follow this [tutorial][5] and
 bookmark this [reference][6].
 
-Resources
----------
+## Resources
 
 The [Zsh Reference Card][7] and the [zsh-lovers][8] man page are indispensable.
 
-License
--------
+## License
 
 (The MIT License)
 
