@@ -58,13 +58,16 @@ if [[ "$OSTYPE" == linux* ]]; then
 
 	# Set NVM
 	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+	# Set rbenv
+	export PATH="$HOME/.rbenv/bin:$PATH"
 
 fi
 
 # Set rbenv
 if is-callable 'rbenv' ; then
-	eval "$(rbenv init - zsh)";
+	eval "$(rbenv init -)";
 fi
 
 # Useful aliases
