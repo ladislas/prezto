@@ -71,8 +71,10 @@ if is-callable 'rbenv' ; then
 fi
 
 # Useful aliases
-alias qq="exit"
+alias qq='exit'
 alias zshrc='$EDITOR ~/.zshrc' # Quick access to the ~/.zshrc file
+alias getchmod="stat --format '%a'"
+
 
 # ls, the common ones I use a lot shortened for rapid fire usage
 alias l='ls -lFh'     #size,show type,human readable
