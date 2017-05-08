@@ -71,7 +71,6 @@ if is-callable 'rbenv' ; then
 fi
 
 # Useful aliases
-alias now="ssh ladislas@leka.cloudapp.net"
 alias qq="exit"
 alias zshrc='$EDITOR ~/.zshrc' # Quick access to the ~/.zshrc file
 
