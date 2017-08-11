@@ -16,14 +16,14 @@ Prezto will work with any recent release of Zsh, but the minimum required versio
 
 3.  Create a new Zsh configuration by copying the Zsh configuration files provided:
 
-    ```
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-    ```
+        setopt EXTENDED_GLOB
+        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+          ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+        done
 
-    Note: If you already have any of the given config files, ln will error. In simple cases you can add `source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"` to the bottom of your `.zshrc` to load prezto but keep your config intact. For more complicated setups, it is recommended that you back up your original configs and replace them with the provided prezto runcoms.
+          Note: If you already have any of the given config files, ln will error. In
+
+    simple cases you can add `source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"` to the bottom of your `.zshrc` to load prezto but keep your config intact. For more complicated setups, it is recommended that you back up your original configs and replace them with the provided prezto runcoms.
 
 4.  Set Zsh as your default shell:
 
@@ -37,10 +37,14 @@ If you are not able to find certain commands after switching to *Prezto*, modify
 
 ## Updating
 
-Pull the latest changes and update submodules.
+Run `zprezto-update` to automatically check if there is an update to zprezto. If there are no file conflicts, zprezto and its submodules will be automatically updated. If there are conflicts you will instructed to go into the `$ZPREZTODIR` directory and resolve them yourself.
 
-```
-git pull && git submodule update --init --recursive
+To pull the latest changes and update submodules manually:
+
+``` {.console}
+cd $ZPREZTODIR
+git pull
+git submodule update --init --recursive
 ```
 
 ## Usage
