@@ -38,8 +38,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
 	fi
 
-	# Set brew cask
-	# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+	# GNU Tar
+	export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
 	# Set NVM
 	export NVM_DIR="$HOME/.nvm"
