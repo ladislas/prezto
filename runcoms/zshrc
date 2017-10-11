@@ -41,6 +41,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 	# GNU Tar
 	export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
+	# GNU Find
+	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+
 	# Set NVM
 	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -120,3 +123,4 @@ alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
