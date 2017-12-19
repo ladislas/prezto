@@ -50,6 +50,10 @@ fi
 # General
 alias rb='ruby'
 
+# Update
+alias gu='gem update --no-ri --no-rdoc'
+alias gem-update='gu'
+
 # Bundler
 if (( $+commands[bundle] )); then
   alias rbb='bundle'
