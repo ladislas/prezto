@@ -57,9 +57,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
 	# The next line enables shell command completion for gcloud.
 	if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
-	# Platform IO
-	export PATH="$HOME/.platformio/penv/bin:$PATH"
-
 fi
 
 # Load Linux specific config
