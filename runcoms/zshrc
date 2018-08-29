@@ -124,3 +124,4 @@ alias sortnr='sort -n -r'
 alias unexport='unset'
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "/home/leka/.acme.sh/acme.sh.env"
