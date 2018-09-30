@@ -124,3 +124,7 @@ alias sortnr='sort -n -r'
 alias unexport='unset'
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "/Users/ladislas/.acme.sh/acme.sh.env"
+
+# added by travis gem
+[ -f /Users/ladislas/.travis/travis.sh ] && source /Users/ladislas/.travis/travis.sh
