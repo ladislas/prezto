@@ -59,6 +59,11 @@ alias rb='ruby'
 alias gu='gem update --no-ri --no-rdoc'
 alias gem-update='gu'
 
+# Install gems
+function gi {
+	gem install --no-ri --no-rdoc $@
+}
+
 # Bundler
 if (( $+commands[bundle] )); then
   alias rbb='bundle'
