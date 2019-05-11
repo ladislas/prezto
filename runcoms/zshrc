@@ -8,91 +8,79 @@
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
 
 # Set nvim as default editor and visual
 if is-callable 'nvim' ; then
-	export EDITOR="nvim" ;
-	export VISUAL='nvim'
-else
-	export EDITOR="vim"
-	export VISUAL='vim'
+  export EDITOR="nvim" ;
+  export VISUAL='nvim'
 fi
-
 
 # Load OS X specific config
 if [[ "$OSTYPE" == darwin* ]]; then
 
-	export LANG=en_US.UTF-8
-	export LC_COLLATE=C
+  # Use GNU Coreutils instead of Apple's
+  if is-callable 'gwhoami' ; then
+    eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+    # Alias ls to use color output
+    alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
+  fi
 
-	# Use GNU Coreutils instead of Apple's
-	if is-callable 'gwhoami' ; then
-		export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-		# Set LS_COLORS
-		eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
-		# Alias ls to use color output
-		alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
-	fi
+  # # GNU Tar
+  # export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
-	# GNU Tar
-	export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+  # # GNU Find
+  # export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
-	# GNU Find
-	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+  # # Set NVM
+  # export NVM_DIR="$HOME/.nvm"
+  # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-	# Set NVM
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  # # Set python
+  # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
-	# Set python
-	export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+  # The next line updates PATH for the Google Cloud SDK.
+  # if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
-	# added by travis gem
-	[ -f /Users/ladislas/.travis/travis.sh ] && source /Users/ladislas/.travis/travis.sh
+  # The next line enables shell command completion for gcloud.
+  # if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
-	# The next line updates PATH for the Google Cloud SDK.
-	if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc'; fi
-
-	# The next line enables shell command completion for gcloud.
-	if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
-
-	if [ -f "/home/leka/.acme.sh/acme.sh.env" ]; then source "/home/leka/.acme.sh/acme.sh.env"; fi
+  # if [ -f "/home/leka/.acme.sh/acme.sh.env" ]; then source "/home/leka/.acme.sh/acme.sh.env"; fi
 
 fi
 
 # Load Linux specific config
 if [[ "$OSTYPE" == linux* ]]; then
 
-	# Show dotfiles first with la
-	export LC_COLLATE="C"
+  # Show dotfiles first with la
+  export LC_COLLATE="C"
 
-	# Set LS_COLORS
-	eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
+  # Set LS_COLORS
+  eval $( dircolors -b "${ZDOTDIR:-$HOME}/.zprezto/modules/lscolors/dircolors.jellybeans" )
 
-	# Set NVM
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  # Set NVM
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-	# Set rbenv
-	export PATH="$HOME/.rbenv/bin:$PATH"
+  # Set rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
 
-	# The next line updates PATH for the Google Cloud SDK.
-	if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc'; fi
+  # The next line updates PATH for the Google Cloud SDK.
+  if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
-	# The next line enables shell command completion for gcloud.
-	if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
+  # The next line enables shell command completion for gcloud.
+  if [ -f '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ladislas/dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
-	if [ -f "/home/leka/.acme.sh/acme.sh.env" ]; then source "/home/leka/.acme.sh/acme.sh.env"; fi
+  if [ -f "/home/leka/.acme.sh/acme.sh.env" ]; then source "/home/leka/.acme.sh/acme.sh.env"; fi
 
 fi
 
 # Set rbenv
 if is-callable 'rbenv' ; then
-	eval "$(rbenv init -)";
+  eval "$(rbenv init -)";
 fi
 
 # Useful aliases
@@ -112,9 +100,9 @@ alias lS='ls -1FSsh'
 alias lart='ls -1Fcart'
 alias lrt='ls -1Fcrt'
 function lls {
-	LLS_PATH=$1
-	\ls -lAFh $LLS_PATH | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/) \
-		*2^(8-i));if(k)printf(\"%0o \",k);print}"
+  LLS_PATH=$1
+  \ls -lAFh $LLS_PATH | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/) \
+    *2^(8-i));if(k)printf(\"%0o \",k);print}"
 }
 
 # System info, history and help
@@ -130,4 +118,4 @@ alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

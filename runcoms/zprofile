@@ -25,13 +25,28 @@ export PAGER='less'
 # Language
 #
 
-if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
-fi
+export LANG='en_US.UTF-8'
+export LC_COLLATE=C
 
 #
 # Paths
 #
+
+# GNU Bin
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# GNU Tar
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+
+# GNU Find
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+
+# Set NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Set python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
