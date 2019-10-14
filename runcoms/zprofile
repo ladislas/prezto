@@ -41,6 +41,10 @@ export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 # GNU Find
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
+# Brew Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
 # Set NVM
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

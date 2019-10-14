@@ -56,12 +56,12 @@ fi
 alias rb='ruby'
 
 # Update
-alias gu='gem update --no-ri --no-rdoc'
+alias gu='gem update --no-document'
 alias gem-update='gu'
 
 # Install gems
 function gi {
-	gem install --no-ri --no-rdoc $@
+	gem install --no-document $@
 }
 
 # Bundler
